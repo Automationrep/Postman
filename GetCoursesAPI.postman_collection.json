@@ -1,0 +1,192 @@
+{
+	"info": {
+		"_postman_id": "112ec87e-a979-46d9-b877-cd07224f15df",
+		"name": "GetCoursesAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "/getapitestingcourses",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonData =pm.response.json();",
+							"const expectedcourses =[\"Selenium Webdriver Java\",\"Cypress\",\"Protractor\"];",
+							"const actualcourses=[];",
+							"",
+							"pm.test(\"Course verification\",function(){",
+							"",
+							"",
+							"    const cypressobject =jsonData.courses.webAutomation.find(m=>m.courseTitle===\"Cypress\");",
+							"    pm.expect(cypressobject).to.be.an(\"object\",\"message not found\");",
+							"",
+							"});",
+							"",
+							"",
+							"pm.test(\"Properties verfication\",function(){",
+							"",
+							"",
+							"    const cypressobject =jsonData.courses.webAutomation.find(m=>m.courseTitle===\"Cypress\");",
+							"    pm.expect(cypressobject).to.have.all.keys(\"courseTitle\",\"price\");",
+							"});",
+							"",
+							"pm.test(\"Validating sum of API courses\",function(){",
+							"",
+							"    const prices =jsonData.courses.webAutomation;",
+							"    let sum=0;",
+							"",
+							"    for(let i=0;i<prices.length;i++)",
+							"    {",
+							"",
+							"        sum=sum+parseInt(prices[i].price);",
+							"",
+							"",
+							"    }",
+							"",
+							"",
+							"    pm.expect(sum).to.eql(130);",
+							"",
+							"",
+							"",
+							"",
+							"});",
+							"pm.test(\"validating webcouses titile\",function(){",
+							"",
+							"    const prices =jsonData.courses.webAutomation.map(m=>actualcourses.push(m.courseTitle));",
+							"",
+							"    console.log(actualcourses);",
+							"",
+							"",
+							"",
+							"",
+							"",
+							"});",
+							"pm.expect(expectedcourses).to.be.eql(actualcourses);",
+							"jsonData.courses.api.forEach((title)=>{",
+							"",
+							"    //console.log(title);",
+							"    if(title.courseTitle==\"Rest Assured Automation using Java\"){",
+							"",
+							"        console.log(title.price);",
+							"    }",
+							"",
+							"",
+							"",
+							"});",
+							"jsonData.courses.mobile.forEach((coursetitle)=>{",
+							"",
+							"    if(coursetitle.price==\"50\"){",
+							"",
+							"        console.log(coursetitle.courseTitle);",
+							"",
+							"    }",
+							"",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/getapitestingcourses",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"getapitestingcourses"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Default",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/getapitestingcourses",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"getapitestingcourses"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"instructor\": \"RahulShetty\",\n    \"url\": \"rahulshettycademy.com\",\n    \"services\": \"projectSupport\",\n    \"expertise\": \"Automation\",\n    \"courses\": {\n        \"webAutomation\": [\n            {\n                \"courseTitle\": \"Selenium Webdriver Java\",\n                \"price\": \"50\"\n            },\n            {\n                \"courseTitle\": \"Cypress\",\n                \"price\": \"40\"\n            },\n            {\n                \"courseTitle\": \"Protractor\",\n                \"price\": \"40\"\n            }\n        ],\n        \"api\": [\n            {\n                \"courseTitle\": \"Rest Assured Automation using Java\",\n                \"price\": \"50\"\n            },\n            {\n                \"courseTitle\": \"SoapUI Webservices testing\",\n                \"price\": \"40\"\n            }\n        ],\n        \"mobile\": [\n            {\n                \"courseTitle\": \"Appium-Mobile Automation using Java\",\n                \"price\": \"50\"\n            }\n        ]\n    },\n    \"linkedIn\": \"https://www.linkedin.com/in/rahul-shetty-trainer/\"\n}"
+				}
+			]
+		},
+		{
+			"name": "GetCourseDetail",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/getapitestingcourses?name=protractor",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"getapitestingcourses"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "protractor"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "GetCourseDetailexample",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/getapitestingcourses?name=protractor",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"getapitestingcourses"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "protractor"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"courseTitle\": \"Protractor\",\n    \"price\": \"40\",\n    \"length\": \"15 hours\"\n}"
+				}
+			]
+		}
+	]
+}
